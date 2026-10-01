@@ -437,7 +437,7 @@ textarea.input{padding:12px 14px;min-height:96px;resize:vertical}
 .modal-head h2{font-size:26px}
 .modal form{display:flex;flex-direction:column;gap:14px}
 .toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 24px);z-index:90;transform:translate(-50%,140%);padding:14px 22px;border-radius:999px;background:var(--ink);color:var(--bg);font-weight:700;font-size:15px;box-shadow:0 12px 30px rgba(0,0,0,.25);transition:transform .45s var(--ease);display:flex;gap:14px;align-items:center;white-space:nowrap}
-.toast.show{transform:translate(-50%,0)}
+.toast{visibility:hidden}.toast.show{transform:translate(-50%,0);visibility:visible}
 .toast a{color:var(--accent);text-decoration:underline}
 button.round-cta{border:none;font:inherit;font-weight:700;font-size:17px}
 
@@ -492,7 +492,7 @@ button.round-cta{border:none;font:inherit;font-weight:700;font-size:17px}
 .tcard summary::after{content:"+";margin-left:auto;font-size:20px}
 .tcard details[open] summary::after{content:"−"}
 .tcard details p{margin-top:8px;color:var(--muted)}
-.compare{width:100%;border-collapse:collapse;font-size:15px}
+.compare{width:100%;min-width:560px;border-collapse:collapse;font-size:15px}
 .compare th,.compare td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--border)}
 .compare th{font-size:13px;color:var(--muted);font-weight:600}
 .compare td:first-child{font-weight:700}
@@ -520,6 +520,7 @@ button.round-cta{border:none;font:inherit;font-weight:700;font-size:17px}
 .bleed-demo{display:flex;gap:24px;align-items:center;flex-wrap:wrap;margin-top:16px}
 .bleed-demo svg{flex-shrink:0}
 .check{position:sticky;top:96px;display:flex;flex-direction:column;gap:12px}
+#checkItems{display:flex;flex-direction:column;gap:10px}
 .check label{display:flex;gap:12px;align-items:flex-start;font-size:14px;line-height:1.45;min-height:32px;cursor:pointer}
 .check input{width:20px;height:20px;flex-shrink:0;accent-color:var(--primary);margin-top:1px}
 .progress{height:8px;border-radius:4px;background:var(--bg);overflow:hidden}
@@ -556,7 +557,7 @@ button.round-cta{border:none;font:inherit;font-weight:700;font-size:17px}
   <div class="wrap">
     <a href="#/" class="logo" aria-label="ArtLine, на главную"><span class="logo-dots" aria-hidden="true"><i></i><i></i><i></i><i></i></span>ArtLine</a>
     <nav class="nav" aria-label="Основное меню">
-      <a href="#/services">Услуги</a><a href="#/catalog">Продукция</a><a href="#/tech">Технологии</a><a href="#/requirements">Макетам</a><a href="#works">Портфолио</a><a href="#find">Контакты</a>
+      <a href="#/services">Услуги</a><a href="#/catalog">Продукция</a><a href="#/tech">Технологии</a><a href="#/requirements">Требования</a><a href="#works">Портфолио</a><a href="#find">Контакты</a>
     </nav>
     <div class="header-actions">
       <div class="palette" role="group" aria-label="Палитра сайта" data-palette-group></div>
