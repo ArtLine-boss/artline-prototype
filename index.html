@@ -609,6 +609,27 @@ button.round-cta{border:none;font:inherit;font-weight:700;font-size:17px}
   .runs,.terms{grid-template-columns:1fr 1fr}
   .run b{font-size:26px}
 }
+
+/* выпадающее меню «Услуги» */
+.nav .dd{position:relative;display:flex;align-items:center}
+.nav .dd-panel{position:absolute;top:100%;left:-20px;padding-top:14px;opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .2s,transform .2s var(--ease),visibility .2s}
+.nav .dd:hover .dd-panel,.nav .dd:focus-within .dd-panel{opacity:1;visibility:visible;transform:none}
+.dd-box{display:grid;grid-template-columns:1fr 1fr;gap:2px 18px;min-width:460px;padding:16px;border-radius:20px;background:var(--surface);border:1px solid var(--border);box-shadow:0 20px 40px rgba(0,0,0,.12)}
+.dd-box a{padding:9px 10px;border-radius:10px;font-size:14px;white-space:nowrap}
+.dd-box a::after{display:none}
+.dd-box a:hover{background:var(--bg);color:var(--primary)}
+.dd-box .dd-all{grid-column:span 2;margin-top:6px;border-top:1px solid var(--border);border-radius:0;padding-top:12px;font-weight:700;color:var(--primary)}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding-bottom:24px}
+.svc-tile{display:flex;flex-direction:column;border-radius:24px;overflow:hidden;background:var(--surface);border:1px solid var(--border);transition:transform .35s var(--ease),border-color .35s}
+.svc-tile:hover{transform:translateY(-5px);border-color:var(--primary)}
+.svc-tile .mini{aspect-ratio:16/10}
+.svc-tile .mini svg{width:100%;height:100%;display:block}
+.svc-tile div.t{padding:18px 20px 22px;display:flex;flex-direction:column;gap:6px}
+.svc-tile b{font-size:18px}
+.svc-tile span{font-size:14px;color:var(--muted)}
+.sub-h{font-size:clamp(24px,2.8vw,34px);margin:24px 0 20px}
+@media (max-width:900px){.svc-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.svc-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -617,7 +638,7 @@ button.round-cta{border:none;font:inherit;font-weight:700;font-size:17px}
   <div class="wrap">
     <a href="#/" class="logo" aria-label="ArtLine, на главную"><span class="logo-dots" aria-hidden="true"><i></i><i></i><i></i><i></i></span>ArtLine</a>
     <nav class="nav" aria-label="Основное меню">
-      <a href="#/services">Услуги</a><a href="#/catalog">Продукция</a><a href="#/tech">Технологии</a><a href="#/requirements">Требования</a><a href="#works">Портфолио</a><a href="#find">Контакты</a>
+      <span class="dd"><a href="#/services">Услуги</a><span class="dd-panel"><span class="dd-box"><a href="#/tech/white">Печать белым</a><a href="#/tech/metal">Золото и серебро</a><a href="#/tech/clear">Прозрачный тонер</a><a href="#/tech/3d">3D-лак</a><a href="#/tech/foil">3D-фольга</a><a href="#/tech/silk">Шелкография</a><a href="#/tech/lam">Ламинация</a><a href="#/tech/contour">Контурная резка</a><a href="#/tech/die">Вырубка</a><a class="dd-all" href="#/services">Все услуги →</a></span></span></span><a href="#/catalog">Продукция</a><a href="#/tech">Технологии</a><a href="#/requirements">Требования</a><a href="#works">Портфолио</a><a href="#find">Контакты</a>
     </nav>
     <div class="header-actions">
       <div class="palette" role="group" aria-label="Палитра сайта" data-palette-group></div>
@@ -925,7 +946,7 @@ button.round-cta{border:none;font:inherit;font-weight:700;font-size:17px}
     <div class="page-head">
       <div class="crumbs"><a href="#/">Главная</a><span>/</span><span>Услуги</span></div>
       <h1>Услуги</h1>
-      <p class="muted">Три направления производства. Выберите нужное или опишите задачу — подскажем, как сделать лучше и дешевле.</p>
+      <p class="muted">Технологии печати и отделки, на которых мы работаем, и три направления производства. Откройте услугу — там оборудование, материалы, сроки и подготовка макета.</p>
     </div>
     <div id="svcList"></div>
     <div style="height:64px"></div>
@@ -1329,7 +1350,8 @@ button.round-cta{border:none;font:inherit;font-weight:700;font-size:17px}
 
   /* ---------- Услуги и проект ---------- */
   function renderServices(n){
-    $('#svcList').innerHTML = SERVICES.map(function(s, i){
+    var tiles = '<div class="svc-grid">' + TECH.filter(function(t){ return DETAIL[t.id]; }).map(function(t){ return '<a class="svc-tile" href="#/tech/' + t.id + '"><div class="mini">' + cover(t.id) + '</div><div class="t"><b>' + t.name + '</b><span>' + DETAIL[t.id].lead.split('. ')[0].replace(/\.$/,'') + '.</span></div></a>'; }).join('') + '</div><h2 class="sub-h">Направления производства</h2>';
+    $('#svcList').innerHTML = tiles + SERVICES.map(function(s, i){
       return '<section class="svc-block" id="svc-' + (i + 1) + '"><div class="ph">[Фото направления]</div><div><span class="num">0' + (i + 1) + '</span><h2>' + s.name + '</h2><p class="muted">' + s.text + '</p>' +
         '<ul class="svc-list">' + s.items.map(function(x){ return '<li>' + x + '</li>'; }).join('') + '</ul>' +
         '<div style="display:flex;gap:12px;flex-wrap:wrap"><a href="#/catalog/' + s.cat + '" class="btn btn-primary">Смотреть продукцию</a><a href="#lead" data-lead="order" class="btn btn-ghost">Обсудить задачу</a></div></div></section>';
