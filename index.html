@@ -549,6 +549,66 @@ button.round-cta{border:none;font:inherit;font-weight:700;font-size:17px}
   .machines{grid-template-columns:1fr}
   .acc > button{padding:0 16px;font-size:16px}
 }
+
+/* ===== СТРАНИЦА УСЛУГИ ===== */
+.svc-hero{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center;padding:28px 0 40px}
+.svc-hero h1{font-size:clamp(32px,4.4vw,56px)}
+.svc-hero .lead{font-size:18px;color:var(--muted);margin-top:16px;max-width:560px}
+.svc-hero .ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.svc-cover{border-radius:32px;overflow:hidden;border:1px solid var(--border);aspect-ratio:5/4;background:var(--dark)}
+.svc-cover svg{display:block;width:100%;height:100%}
+.anchors{position:sticky;top:66px;z-index:20;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:12px 0;margin-bottom:8px;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(10px)}
+.anchors::-webkit-scrollbar{display:none}
+.anchors a{flex-shrink:0;min-height:40px;padding:0 16px;border-radius:999px;border:1px solid var(--border);display:flex;align-items:center;font-size:14px;font-weight:600;transition:background .2s,color .2s}
+.anchors a:hover{background:var(--ink);color:var(--bg)}
+.sblock{padding:48px 0;border-top:1px solid var(--border);scroll-margin-top:130px}
+.sblock > h2{font-size:clamp(24px,2.8vw,34px);margin-bottom:24px}
+.equip{display:grid;grid-template-columns:1fr 1.3fr;gap:32px;align-items:center}
+.equip .ph{height:300px;border-radius:24px}
+.mats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.mat{border-radius:20px;overflow:hidden;background:var(--surface);border:1px solid var(--border)}
+.mat .sw{height:110px}
+.mat b{display:block;padding:14px 16px 4px;font-size:15px}
+.mat span{display:block;padding:0 16px 16px;font-size:13px;color:var(--muted)}
+.runs,.terms{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:720px}
+.run{padding:24px;border-radius:22px;background:var(--surface);border:1px solid var(--border)}
+.run b{display:block;font-size:34px;color:var(--primary);line-height:1.1}
+.run span{color:var(--muted);font-size:14px}
+.req-card{display:flex;gap:24px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:28px;border-radius:24px;background:var(--surface);border:1px solid var(--border)}
+.req-card ul{margin:0;padding-left:18px;color:var(--muted);display:flex;flex-direction:column;gap:6px}
+.req-card ul b{color:var(--ink)}
+.promo{margin-top:14px;max-width:720px;padding:18px 22px;border-radius:18px;background:var(--accent);color:var(--on-accent);font-weight:600}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.trio > div{padding:24px;border-radius:22px;background:var(--surface);border:1px solid var(--border)}
+.trio b{display:block;font-size:17px;margin-bottom:6px}
+.trio span{font-size:14px;color:var(--muted)}
+.examples{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.examples .ph{aspect-ratio:1;border-radius:20px}
+.also{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.also a{display:flex;flex-direction:column;gap:10px;padding:18px;border-radius:20px;background:var(--surface);border:1px solid var(--border);transition:transform .3s var(--ease),border-color .3s}
+.also a:hover{transform:translateY(-4px);border-color:var(--primary)}
+.also a .mini{height:90px;border-radius:14px;overflow:hidden}
+.also a .mini svg{width:100%;height:100%;display:block}
+.also a b{font-size:15px}
+.price-form{display:grid;grid-template-columns:1fr 1.2fr;gap:36px;align-items:start;padding:36px;border-radius:28px;background:var(--dark);color:var(--on-dark)}
+.price-form p{color:var(--on-dark-muted);margin-top:12px}
+.price-form form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.price-form .field{color:var(--on-dark-muted)}
+.price-form .input{background:color-mix(in srgb,var(--on-dark) 8%,transparent);border-color:var(--on-dark-line);color:var(--on-dark)}
+.price-form .wide{grid-column:span 2}
+@media (max-width:900px){
+  .svc-hero,.equip,.price-form{grid-template-columns:1fr}
+  .mats,.examples,.also{grid-template-columns:1fr 1fr}
+  .trio{grid-template-columns:1fr}
+  .anchors{top:58px}
+}
+@media (max-width:600px){
+  .price-form{padding:24px 20px}
+  .price-form form{grid-template-columns:1fr}
+  .price-form .wide{grid-column:auto}
+  .runs,.terms{grid-template-columns:1fr 1fr}
+  .run b{font-size:26px}
+}
 </style>
 </head>
 <body>
@@ -943,6 +1003,11 @@ button.round-cta{border:none;font:inherit;font-weight:700;font-size:17px}
   </div>
 </div>
 
+<!-- ===== СТРАНИЦА УСЛУГИ ===== -->
+<div class="view" data-view="svc">
+  <div class="wrap" id="svcPage"></div>
+</div>
+
 <!-- ===== ТРЕБОВАНИЯ К МАКЕТАМ ===== -->
 <div class="view" data-view="requirements">
   <div class="wrap">
@@ -1305,7 +1370,7 @@ button.round-cta{border:none;font:inherit;font-weight:700;font-size:17px}
     $('#techGrid').innerHTML = TECH.map(function(t){
       return '<article class="tcard' + (techF !== 'all' && t.g !== techF ? ' hide' : '') + '" id="t-' + t.id + '"><div class="ticon">' + ICO[t.ico] + '</div><h3>' + t.name + '</h3><p class="muted" style="font-size:15px">' + t.text + '</p>' +
         '<div class="facts2">' + t.facts.map(function(f){ return '<span>' + f + '</span>'; }).join('') + '</div>' +
-        '<details><summary>Как подготовить макет</summary><p>' + t.tip + '</p></details></article>';
+        '<details><summary>Как подготовить макет</summary><p>' + t.tip + '</p></details><a href="#/tech/' + t.id + '" class="btn btn-ghost" style="margin-top:auto">Подробнее</a></article>';
     }).join('');
     if (focus){ var el = $('#t-' + focus); if (el){ el.style.borderColor = 'var(--primary)'; setTimeout(function(){ el.scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block:'center'}); }, 60); } }
   }
@@ -1348,6 +1413,122 @@ button.round-cta{border:none;font:inherit;font-weight:700;font-size:17px}
   $('#reqAcc').addEventListener('click', function(e){ var b = e.target.closest('[data-acc]'); if (!b) return; var i = +b.dataset.acc; openReq = openReq === i ? -1 : i; renderReq(); });
   $('#checkItems').addEventListener('change', function(e){ var c = e.target.closest('[data-chk]'); if (!c) return; checks[c.dataset.chk] = c.checked; updateCheck(); });
 
+
+  /* ---------- Страницы услуг: данные ArtLine ---------- */
+  var IRIDESSE = {name:'Xerox Iridesse Production Press', text:'Цифровая машина, которая за один проход печатает CMYK и до двух дополнительных слоёв: белый, золото, серебро или прозрачный. Поэтому металлик и белая подложка ложатся точно в приводку с цветом, без повторного прогона листа.'};
+  var SHINE = {name:'Konica Minolta AccurioShine 3600', text:'Цифровая система облагораживания: наносит выпуклый лак и фольгу прямо по готовому оттиску. Не нужны клише и формы, поэтому эффект выгоден даже на одном листе и подходит для персонализации.'};
+  var CUTTER = {name:'Режущий плоттер и вырубной пресс', text:'Плоттер режет по любому векторному контуру без штампа — для малых тиражей и стикеров. Для серий и упаковки изготавливаем штамп и вырубаем на прессе.'};
+  var SILKEQ = {name:'Участок шелкографии', text:'Ручная и полуавтоматическая печать через сетчатый трафарет. Краска ложится плотным слоем и держится на ткани, пластике и бумаге, которую не возьмёт цифровая машина.'};
+  var LAMEQ = {name:'Рулонный ламинатор', text:'Наносим плёнку с одной или двух сторон листа. Ламинация защищает от влаги и потёртостей и готовит поверхность под 3D-лак и фольгу.'};
+  var M = {
+    dark:['Тёмные и цветные картоны','чёрный, синий, крафт','#1b1b1f'],
+    kraft:['Крафт','натуральная фактура','#b98a5a'],
+    calka:['Калька и прозрачные плёнки','эффект «на стекле»','linear-gradient(135deg,#e9eef0,#c9d3d7)'],
+    design:['Дизайнерские бумаги','тиснёные, перламутровые','linear-gradient(135deg,#efe7dc,#d8c7b0)'],
+    coated:['Мелованные бумаги и картоны','глянец и мат, 115–350 г','#f4f4f2'],
+    lam:['Ламинированные листы','мат, глянец, soft-touch','linear-gradient(135deg,#2a2a30,#55555f)'],
+    self:['Самоклеящиеся материалы','бумага, плёнка, винил','linear-gradient(135deg,#ffffff,#e3e7ea)'],
+    textile:['Текстиль','хлопок, смесовые ткани','linear-gradient(135deg,#d8dfe6,#aab6c2)'],
+    bags:['Пакеты и упаковка','бумажные, ПВД, коробки','linear-gradient(135deg,#e8d8c4,#c7ab88)'],
+    plastic:['Пластик и сувениры','ручки, кружки, папки','linear-gradient(135deg,#ffd166,#ef476f)'],
+    magnet:['Магнитный винил','для фигурных магнитов','#3a3a40'],
+    board:['Картон для упаковки','коробки, папки, бирки','#d9c3a1']
+  };
+  var DETAIL = {
+    white:{eq:IRIDESSE, mats:['dark','kraft','calka','design'], run:['1 шт','[N] шт'], days:['[N] рабочих дня','от 24 часов'],
+      lead:'Белый для нас — такая же краска, как остальные. Печатаем им текст, графику и подложки на тёмной бумаге, крафте и прозрачных материалах.',
+      req:['Белый — отдельный слой из плашки <b>White</b>','Заливка 100 %, атрибут overprint','Подложка под цвет — той же формы, что и цветной объект'],
+      uses:['Визитки на чёрном картоне','Приглашения на кальке','Бирки и этикетки на крафте','Наклейки на прозрачной плёнке']},
+    metal:{eq:IRIDESSE, mats:['coated','dark','design','kraft'], run:['1 шт','[N] шт'], days:['[N] рабочих дня','от 24 часов'],
+      lead:'Настоящий металлик в цифровой печати: золото и серебро печатаются тонером, а не имитируются жёлтым и серым.',
+      req:['Слой металлика — плашка <b>Gold</b> или <b>Silver</b>','Заливка 100 %, overprint','Текст металликом — от 7 pt, линии — от 0,3 мм'],
+      uses:['Сертификаты и дипломы','Открытки и приглашения','Этикетки премиум-продукции','Фирменные бланки']},
+    clear:{eq:IRIDESSE, mats:['coated','design','dark','lam'], run:['1 шт','[N] шт'], days:['[N] рабочих дня','от 24 часов'],
+      lead:'Прозрачный тонер добавляет выборочный глянец прямо при печати: блестящий логотип на матовом фоне без отдельной лакировки.',
+      req:['Глянец — отдельный слой из плашки <b>Varnish</b>','Заливка 100 %, overprint','Лучше всего смотрится на матовых бумагах'],
+      uses:['Обложки каталогов','Визитки с глянцевым акцентом','Фирменные папки','Упаковка']},
+    '3d':{eq:SHINE, mats:['lam','coated','self','design'], run:['1 лист','[N] листов'], days:['от [N] рабочих дней','по согласованию'],
+      lead:'Толстый слой лака, который чувствуется пальцами. Подчёркивает логотип, рисунок или текст объёмом и глубоким глянцем.',
+      req:['Слой лака — плашка <b>Varnish</b>','Заливка 100 %, без растра и полутонов','Линии — от 0,5 мм, отступ от реза — от 2 мм'],
+      uses:['Визитки с объёмным логотипом','Обложки и коробки','Этикетки','Приглашения']},
+    foil:{eq:SHINE, mats:['lam','coated','self','design'], run:['1 лист','[N] листов'], days:['от [N] рабочих дней','по согласованию'],
+      lead:'Фольга без клише: золото, серебро и цветные фольги ложатся на выпуклый слой. Можно менять имя или номер на каждом экземпляре.',
+      req:['Слой фольги — плашка <b>Foil</b>','Заливка 100 %, overprint','Линии — от 0,5 мм, текст — от 8 pt'],
+      uses:['Именные приглашения','Подарочные сертификаты','Упаковка и коробки','Обложки']},
+    silk:{eq:SILKEQ, mats:['textile','bags','plastic','kraft'], run:['[N] шт','крупные партии'], days:['[N] рабочих дней','по согласованию'],
+      lead:'Классическая трафаретная печать для ткани, пакетов и сувениров. Плотный стойкий цвет, точное попадание в Pantone.',
+      req:['Векторный макет, цвета — плашками Pantone','Каждый цвет — на своём слое','Без градиентов и полупрозрачности'],
+      uses:['Футболки и худи','Пакеты с логотипом','Шопперы','Промо-сувениры']},
+    lam:{eq:LAMEQ, mats:['coated','design','dark','self'], run:['1 лист','[N] листов'], days:['+[N] день к печати','в день печати'],
+      lead:'Плёнка делает изделие прочнее и меняет ощущение от него: глянец — ярче, мат — строже, soft-touch — бархатно.',
+      req:['Отдельный макет не нужен','На плотной бумаге со сгибом добавляем биговку','Под 3D-лак и фольгу — тонкая ламинация'],
+      uses:['Визитки','Обложки и меню','Папки','Карточки и бирки']},
+    contour:{eq:CUTTER, mats:['self','magnet','coated','kraft'], run:['1 лист','[N] листов'], days:['+[N] день к печати','по согласованию'],
+      lead:'Режем по любому контуру без штампа: стикеры, стикерпаки, магниты, бирки, фигурные открытки.',
+      req:['Контур — плашка <b>CutContour</b>, обводка 0,25 pt','Векторная линия без заливки','Между фигурами — от 3 мм'],
+      uses:['Стикерпаки','Фигурные магниты','Бирки','Этикетки сложной формы']},
+    die:{eq:CUTTER, mats:['board','coated','kraft','self'], run:['[N] шт','крупные партии'], days:['[N] рабочих дней','с учётом штампа'],
+      lead:'Для серийных форм — коробок, папок, бирок — делаем штамп. Каждая следующая единица вырубается быстро и одинаково.',
+      req:['Линия реза — плашка <b>CutContour</b>','Развёртку можно взять у нас','Биговку обозначьте отдельной линией и подпишите'],
+      uses:['Коробки','Папки','Конверты','Бирки и подвесы']}
+  };
+  TECH.forEach(function(t){ if (t.id === 'lam') t.did = 'lam'; });
+
+  /* Обложки — собственные SVG-иллюстрации, перекрашиваются палитрой */
+  function cover(id){
+    var bg = 'var(--dark)', inner = '';
+    if (id === 'white') inner = '<rect x="90" y="70" width="320" height="260" rx="14" fill="#1b1b1f" stroke="#33333a"/><text x="250" y="190" fill="#fff" font-family="Montserrat" font-weight="700" font-size="44" text-anchor="middle">ArtLine</text><path d="M150 240h200M180 270h140" stroke="#fff" stroke-width="6" stroke-linecap="round"/>';
+    else if (id === 'metal') inner = '<defs><linearGradient id="gm" x1="0" x2="1"><stop offset="0" stop-color="#7a5b14"/><stop offset=".45" stop-color="#ffe7a1"/><stop offset="1" stop-color="#9c7420"/></linearGradient><linearGradient id="sm" x1="0" x2="1"><stop offset="0" stop-color="#777"/><stop offset=".5" stop-color="#fafafa"/><stop offset="1" stop-color="#8a8a8a"/></linearGradient></defs><rect x="90" y="70" width="320" height="260" rx="14" fill="#f4f1ea"/><circle cx="250" cy="170" r="56" fill="none" stroke="url(#gm)" stroke-width="10"/><text x="250" y="188" fill="url(#gm)" font-family="Montserrat" font-weight="700" font-size="48" text-anchor="middle">A</text><path d="M140 270h220" stroke="url(#sm)" stroke-width="8" stroke-linecap="round"/>';
+    else if (id === 'clear') inner = '<rect x="90" y="70" width="320" height="260" rx="14" fill="#2d2f36"/><circle cx="250" cy="190" r="80" fill="#ffffff" opacity=".12"/><circle cx="225" cy="165" r="30" fill="#ffffff" opacity=".35"/><text x="250" y="300" fill="#ffffff" opacity=".5" font-family="Montserrat" font-weight="700" font-size="22" text-anchor="middle">matt + gloss</text>';
+    else if (id === '3d') inner = '<rect x="90" y="70" width="320" height="260" rx="14" fill="#22242b"/><g opacity=".9"><circle cx="200" cy="180" r="42" fill="#ffffff" opacity=".18"/><circle cx="190" cy="170" r="14" fill="#fff" opacity=".7"/><circle cx="300" cy="230" r="30" fill="#ffffff" opacity=".18"/><circle cx="293" cy="222" r="9" fill="#fff" opacity=".7"/><circle cx="320" cy="140" r="20" fill="#ffffff" opacity=".18"/><circle cx="315" cy="135" r="6" fill="#fff" opacity=".7"/></g>';
+    else if (id === 'foil') inner = '<defs><linearGradient id="gf" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8f6a16"/><stop offset=".3" stop-color="#fff0b8"/><stop offset=".6" stop-color="#c39429"/><stop offset="1" stop-color="#ffe08a"/></linearGradient></defs><rect x="90" y="70" width="320" height="260" rx="14" fill="#14151a"/><text x="250" y="190" fill="url(#gf)" font-family="Montserrat" font-weight="700" font-size="40" text-anchor="middle">Анна</text><path d="M170 225c30-20 130-20 160 0" stroke="url(#gf)" stroke-width="5" fill="none" stroke-linecap="round"/><rect x="120" y="96" width="260" height="208" rx="8" fill="none" stroke="url(#gf)" stroke-width="3"/>';
+    else if (id === 'silk') inner = '<rect x="90" y="70" width="320" height="260" rx="14" fill="#e6e2db"/><path d="M190 110l-50 30 20 40 20-10v120h140V170l20 10 20-40-50-30c-10 20-30 30-60 30s-50-10-60-30z" fill="#fff" stroke="#cfc8bd" stroke-width="3"/><circle cx="250" cy="210" r="30" fill="var(--primary)"/><circle cx="250" cy="210" r="14" fill="var(--accent)"/>';
+    else if (id === 'lam') inner = '<rect x="120" y="120" width="260" height="190" rx="12" fill="#cfd5d9" transform="rotate(-6 250 215)"/><rect x="120" y="105" width="260" height="190" rx="12" fill="#ffffff" opacity=".85"/><rect x="120" y="90" width="260" height="190" rx="12" fill="#ffffff" opacity=".35" stroke="#fff"/><path d="M150 110l60 0" stroke="#fff" stroke-width="10" stroke-linecap="round" opacity=".8"/>';
+    else if (id === 'contour') inner = '<rect x="90" y="70" width="320" height="260" rx="14" fill="#f1efe9"/><path d="M170 130c30-30 70-10 70 20s-40 60-70 40-30-40 0-60z" fill="var(--primary)" stroke="var(--ink)" stroke-dasharray="6 5" stroke-width="2"/><circle cx="320" cy="160" r="40" fill="var(--accent)" stroke="var(--ink)" stroke-dasharray="6 5" stroke-width="2"/><path d="M180 250l30-30 30 30 30-30 30 30-30 40h-60z" fill="#5aa9e6" stroke="var(--ink)" stroke-dasharray="6 5" stroke-width="2"/>';
+    else if (id === 'die') inner = '<rect x="90" y="70" width="320" height="260" rx="14" fill="#e3d2b6"/><path d="M150 120h70v-30h60v30h70v170H150z" fill="none" stroke="#5b4a32" stroke-width="3"/><path d="M220 120v170M280 120v170M150 200h200" stroke="#5b4a32" stroke-width="2" stroke-dasharray="8 6"/>';
+    return '<svg viewBox="0 0 500 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="500" height="400" fill="' + bg + '"/><g opacity=".12" stroke="#fff"><path d="M0 40h500M0 360h500M40 0v400M460 0v400"/></g>' + inner + '</svg>';
+  }
+  function techById(id){ for (var i = 0; i < TECH.length; i++) if (TECH[i].id === id) return TECH[i]; return null; }
+  function renderTechDetail(id){
+    var t = techById(id), d = DETAIL[id];
+    if (!t || !d){ renderTech(); show('tech'); return false; }
+    var secs = [['eq','Оборудование'],['mats','Материалы'],['run','Тираж'],['req','Подготовка макета'],['terms','Сроки'],['pay','Оплата'],['get','Получение'],['ex','Примеры работ'],['also','Также предлагаем'],['price','Узнать стоимость']];
+    var others = TECH.filter(function(x){ return x.id !== id && DETAIL[x.id]; }).slice(0, 4);
+    $('#svcPage').innerHTML =
+      '<div class="svc-hero"><div><div class="crumbs"><a href="#/">Главная</a><span>/</span><a href="#/tech">Технологии</a><span>/</span><span>' + t.name + '</span></div>' +
+        '<h1>' + t.name + '</h1><p class="lead">' + d.lead + '</p><div class="facts2" style="margin-top:18px;display:flex;flex-wrap:wrap;gap:6px">' + t.facts.map(function(f){ return '<span class="tag">' + f + '</span>'; }).join('') + '</div>' +
+        '<div class="ctas"><a href="#svc-price" class="btn btn-primary">Узнать стоимость</a><a href="#lead" data-lead="samples" class="btn btn-ghost">Получить образцы</a></div></div>' +
+        '<div class="svc-cover">' + cover(id) + '</div></div>' +
+      '<nav class="anchors" aria-label="Разделы страницы">' + secs.map(function(x){ return '<a href="#svc-' + x[0] + '">' + x[1] + '</a>'; }).join('') + '</nav>' +
+      '<section class="sblock" id="svc-eq"><h2>На чём печатаем</h2><div class="equip"><div class="ph">[Фото оборудования ArtLine]</div><div><h3 style="font-size:22px;font-weight:600;margin-bottom:12px">' + d.eq.name + '</h3><p class="muted">' + d.eq.text + '</p></div></div></section>' +
+      '<section class="sblock" id="svc-mats"><h2>Материалы</h2><div class="mats">' + d.mats.map(function(k){ var m = M[k]; return '<div class="mat"><div class="sw" style="background:' + m[2] + '"></div><b>' + m[0] + '</b><span>' + m[1] + '</span></div>'; }).join('') + '</div><a href="#lead" data-lead="samples" class="btn btn-ghost" style="margin-top:20px">Подобрать материал</a></section>' +
+      '<section class="sblock" id="svc-run"><h2>Тираж</h2><div class="runs"><div class="run"><b>' + d.run[0] + '</b><span>минимальный тираж</span></div><div class="run"><b>' + d.run[1] + '</b><span>максимальный тираж</span></div></div></section>' +
+      '<section class="sblock" id="svc-req"><h2>Подготовка макета</h2><div class="req-card"><ul>' + d.req.map(function(r){ return '<li>' + r + '</li>'; }).join('') + '</ul><div style="display:flex;gap:10px;flex-wrap:wrap"><a href="#/requirements" class="btn btn-ghost">Все требования</a><a href="#lead" data-lead="design" class="btn btn-primary">Заказать дизайн</a></div></div><p class="muted" style="margin-top:14px;font-size:14px">Нет времени разбираться? Пришлите файл как есть — допечатная подготовка проверит и поправит.</p></section>' +
+      '<section class="sblock" id="svc-terms"><h2>Сроки</h2><div class="terms"><div class="run"><b style="font-size:24px">' + d.days[0] + '</b><span>стандартный срок</span></div><div class="run"><b style="font-size:24px">' + d.days[1] + '</b><span>срочный заказ</span></div></div><div class="promo">[Акция для первого заказа — условия уточнить]</div></section>' +
+      '<section class="sblock" id="svc-pay"><h2>Оплата</h2><div class="trio"><div><b>Картой онлайн</b><span>Менеджер пришлёт ссылку на оплату</span></div><div><b>Безнал по счёту</b><span>Для юрлиц и ИП, закрывающие документы</span></div><div><b>Наличными или картой</b><span>В офисе при получении</span></div></div></section>' +
+      '<section class="sblock" id="svc-get"><h2>Как получить заказ</h2><div class="trio"><div><b>Самовывоз</b><span>Брест, [адрес], [часы работы]</span><a href="#find" style="display:block;margin-top:10px;font-weight:700;color:var(--primary)">На карте →</a></div><div><b>Курьер по Бресту</b><span>[условия и стоимость]</span></div><div><b>По Беларуси</b><span>Почтой и транспортными компаниями</span></div></div></section>' +
+      '<section class="sblock" id="svc-ex"><h2>Примеры работ</h2><div class="examples">' + d.uses.map(function(u){ return '<div><div class="ph">[Фото работы]</div><p style="margin-top:10px;font-weight:600;font-size:14px">' + u + '</p></div>'; }).join('') + '</div><a href="#works" class="btn btn-ghost" style="margin-top:20px">Всё портфолио</a></section>' +
+      '<section class="sblock" id="svc-also"><h2>Также предлагаем</h2><div class="also">' + others.map(function(o){ return '<a href="#/tech/' + o.id + '"><div class="mini">' + cover(o.id) + '</div><b>' + o.name + '</b></a>'; }).join('') + '</div></section>' +
+      '<section class="sblock" id="svc-price" style="padding-bottom:88px"><div class="price-form"><div><h2 style="font-size:clamp(24px,2.8vw,34px)">Узнайте стоимость</h2><p>Опишите изделие — посчитаем цену с эффектом «' + t.name.toLowerCase() + '» и предложим варианты по срокам.</p></div>' +
+        '<form id="svcForm" novalidate><label class="field">Имя<input class="input" name="name" autocomplete="name" placeholder="Иван"><span class="err">Укажите имя</span></label><label class="field">Телефон<input class="input" name="phone" type="tel" autocomplete="tel" placeholder="+375 (__) ___-__-__"><span class="err">Укажите телефон</span></label>' +
+        '<label class="field wide">Что нужно сделать<textarea class="input" name="msg" placeholder="Изделие, размер, тираж"></textarea></label><button type="submit" class="btn btn-accent wide" style="min-height:56px">Отправить запрос</button></form></div></section>';
+    document.title = t.name + ' — ArtLine';
+    show('svc');
+    return true;
+  }
+  document.addEventListener('submit', function(e){
+    if (e.target.id !== 'svcForm') return;
+    e.preventDefault();
+    if (!validate(e.target)) return;
+    e.target.reset(); toast('Запрос отправлен — менеджер свяжется с вами');
+  });
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('#svcPage a[href^="#svc-"]'); if (!a) return;
+    e.preventDefault();
+    var el = document.getElementById(a.getAttribute('href').slice(1));
+    if (el) el.scrollIntoView({behavior: reduce ? 'auto' : 'smooth'});
+  });
+
   /* ---------- Роутер ---------- */
   var views = $$('.view');
   function show(name){ views.forEach(function(v){ v.classList.toggle('active', v.dataset.view === name); }); }
@@ -1368,7 +1549,8 @@ button.round-cta{border:none;font:inherit;font-weight:700;font-size:17px}
     else if (page === 'cart'){ if (co.step === 'done') co.step = 'cart'; renderCart(); show('cart'); document.title = 'Корзина — ArtLine'; }
     else if (page === 'services'){ renderServices(arg); show('services'); document.title = 'Услуги — ArtLine'; }
     else if (page === 'project'){ renderProject(+arg); show('project'); }
-    else if (page === 'tech'){ renderTech(arg); show('tech'); document.title = 'Технологии — ArtLine'; }
+    else if (page === 'tech' && arg && DETAIL[arg]){ renderTechDetail(arg); }
+    else if (page === 'tech'){ renderTech(); show('tech'); document.title = 'Технологии — ArtLine'; }
     else if (page === 'requirements'){ renderReq(); show('requirements'); document.title = 'Требования к макетам — ArtLine'; }
     else { show('home'); document.title = 'ArtLine — полиграфия и реклама в Бресте'; }
   }
